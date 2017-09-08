@@ -1,0 +1,3 @@
+//include ':app'
+//include ':library_common',
+include ':module_kotlin', ':library_http'

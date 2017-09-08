@@ -1,0 +1,23 @@
+<resources>
+
+    <style name="AppTheme" parent="AppTheme.Base">
+        <!-- 系统将在你的window里面绘制status bar，默认为true，之所以要写出来是因为你的theme有可能是继承过来的，确保为true -->
+        <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
+        <!-- 沉浸式风格-->
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <!-- 为适应沉浸式风格 -->
+        <!--<item name="android:fitsSystemWindows">true</item>-->
+        <!-- 自定义状态栏颜色 5.0+ -->
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <!-- 允许使用transitions过渡动画 -->
+        <item name="android:windowContentTransitions">true</item>
+        <!-- 指定进入和退出transitions -->
+        <!--<item name="android:windowEnterTransition">@transition/explode</item>-->
+        <!--<item name="android:windowExitTransition">@transition/explode</item>-->
+
+        <item name="android:actionOverflowMenuStyle">@style/Toolbar.Base</item>
+    </style>
+
+</resources>

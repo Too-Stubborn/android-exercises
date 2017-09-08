@@ -1,0 +1,33 @@
+/**
+ * ******************** Library通用配置 ********************
+ *
+ * 所有属性可以在module里定义并覆盖
+ */
+apply plugin: rootProject.ext.plugin.library
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    // Google官方包
+    compile "com.android.support:appcompat-v7:$rootProject.ext.dependencies.supportLibraryVersion"
+    compile "com.android.support:support-v4:$rootProject.ext.dependencies.supportLibraryVersion"
+    compile "com.android.support:support-annotations:$rootProject.ext.dependencies.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.ext.dependencies.supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.dependencies.supportLibraryVersion"
+    compile "com.android.support.constraint:constraint-layout:$rootProject.ext.dependencies.constraintLayout"
+    
+    // Java commons包
+    compile 'org.apache.commons:commons-lang3:3.5'
+
+}

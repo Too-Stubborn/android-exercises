@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- *********************** 以下为App主题颜色定义 *********************** -->
+
+    <!-- App主色调 -->
+    <color name="colorPrimary">#12B7F5</color>
+    <!-- App主色调 深色 -->
+    <color name="colorPrimaryDark">#1976D2</color>
+    <!-- App主色调 浅色 -->
+    <color name="colorPrimaryLight">#A6D9EC</color>
+    <!-- App强调色 -->
+    <color name="colorAccent">#FF4081</color>
+    <!-- App背景色 -->
+    <color name="colorBackground">#F2F2F2</color>
+
+    <!-- 文字颜色，主要内容 -->
+    <color name="textColorPrimary">#212121</color>
+    <!-- 文字颜色，次要内容 -->
+    <color name="textColorSecondary">#757575</color>
+    <!-- 文字颜色，第三层内容 -->
+    <color name="textColorTertiary">#94979e</color>
+    <!-- 文字颜色，提示内容 -->
+    <color name="textColorTips">#757575</color>
+    <!-- 文字颜色，输入框提示文字 -->
+    <color name="textColorHint">#C7C7CD</color>
+    <!-- 文字颜色，标题 -->
+    <color name="textColorTitle">#000000</color>
+    <!-- 文字颜色，副标题 -->
+    <color name="textColorSubTitle">#212121</color>
+
+    <!-- *********************** 以下为App通用颜色定义 *********************** -->
+
+    <!-- 按钮按下颜色 -->
+    <color name="btn_press_grey">#E1E1E1</color>
+    <!-- 按钮不可点击颜色 -->
+    <color name="btn_disable_grey">#CECECE</color>
+    <!-- 黑色透明度10% -->
+    <color name="black_transparent_10p">#1A000000</color>
+    <!-- 黑色透明度20% -->
+    <color name="black_transparent_20p">#33000000</color>
+    <!-- 黑色透明度30% -->
+    <color name="black_transparent_30p">#4D000000</color>
+    <!-- 黑色透明度40% -->
+    <color name="black_transparent_40p">#66000000</color>
+    <!-- 黑色透明度50% -->
+    <color name="black_transparent_50p">#80000000</color>
+
+    <!-- 分割线颜色，浅色 -->
+    <color name="divider_line_grey">#E1E1E1</color>
+    <!-- 分割线颜色，深色-->
+    <color name="divider_line_grey_deep">#BEBEBE</color>
+    <!-- 分割线颜色，深色-->
+    <color name="divider_line_grey_deep_msg">#d8d8d8</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey">#EEEEEE</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- 后面值为饱和度 -->
+    <!-- MaterialDesign设计规范http://www.xueui.cn/experience/app-experience/material-design-style-color.html -->
+    <color name="red_500">#F44336</color>
+    <color name="pink_500">#E91E63</color>
+    <color name="cyan_500">#00BCD4</color>
+    <color name="light_blue_500">#03A9F4</color>
+    <color name="teal_500">#009688</color>
+    <color name="green_500">#4CAF50</color>
+    <color name="light_green_500">#8BC34A</color>
+    <color name="grey_500">#9E9E9E</color>
+    <color name="blue_grey_500">#607D8B</color>
+    <color name="orange_500">#F44336</color>
+
+    <!-- ********************** 以下为针对具体页面定义 ********************** -->
+
+</resources>

@@ -1,0 +1,78 @@
+<resources>
+    <!-- *************************** 以下为App主题样式定义 ******************************** -->
+    <style name="AppTheme" parent="AppTheme.Base" />
+
+    <!-- Base application theme. -->
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- App自带的标题栏 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 窗口背景色，也就是Activity标题栏下面所有地方的颜色 -->
+        <item name="android:windowBackground">@color/colorBackground</item>
+
+        <!--   your app's branding color (for the app bar) -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!--   darker variant of colorPrimary (for status bar, contextual app bars) -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--   theme UI controls like checkboxes and text fields -->
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- 用于toolbar -->
+        <item name="android:popupBackground">@android:color/transparent</item>
+        <item name="android:dropDownVerticalOffset">0dp</item>
+
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- AppBarLayout,Toolbar-->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- ***************************** 以下为App通用样式基类 ****************************** -->
+    <!-- ToolBar基础样式-->
+    <style name="Toolbar.Base" parent="@style/Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+    </style>
+
+    <!-- Dialog基础样式 -->
+    <style name="Dialog.Base" parent="Theme.AppCompat.Light.Dialog">
+        <!--<item name="android:windowIsFloating">true</item>-->
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--<item name="android:backgroundDimEnabled">true</item>-->
+    </style>
+
+    <!-- ListView基础样式-->
+    <style name="ListView.Base" parent="@android:style/Widget.ListView">
+        <item name="android:dividerHeight">@dimen/divider_line_height</item>
+        <item name="android:divider">@color/divider_line_grey</item>
+        <item name="android:headerDividersEnabled">false</item>
+        <item name="android:footerDividersEnabled">false</item>
+        <item name="android:listSelector">@android:color/transparent</item>
+        <item name="android:cacheColorHint">#0000</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:fastScrollEnabled">false</item>
+        <item name="android:fadingEdgeLength">0dp</item>
+    </style>
+
+    <!-- GridView基础样式 -->
+    <style name="GridView.Base" parent="@android:style/Widget.GridView">
+        <item name="android:horizontalSpacing">2dp</item>
+        <item name="android:verticalSpacing">2dp</item>
+        <item name="android:numColumns">0</item>
+        <item name="android:divider">@null</item>
+        <item name="android:dividerHeight">0dp</item>
+        <item name="android:headerDividersEnabled">false</item>
+        <item name="android:footerDividersEnabled">false</item>
+        <item name="android:listSelector">@android:color/transparent</item>
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:fastScrollEnabled">false</item>
+        <item name="android:fadingEdgeLength">0dp</item>
+    </style>
+
+    <!-- **************************** 以下为针对具体页面定义 ****************************** -->
+
+
+</resources>

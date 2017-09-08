@@ -1,0 +1,9 @@
+<resources>
+
+    <style name="AppTheme" parent="AppTheme.Base">
+        <!-- 沉浸式风格-->
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+    </style>
+
+</resources>

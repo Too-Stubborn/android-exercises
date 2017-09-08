@@ -1,0 +1,63 @@
+/**
+ *  ******************* Maven仓库上传 *******************
+ */
+apply plugin: rootProject.ext.plugin.maven
+
+def MavenInfo = [
+        userName             : NEXUS_USERNAME,
+        password             : NEXUS_PASSWORD,
+        snapshotRepositoryUrl: SNAPSHOT_REPOSITORY_URL,
+        releaseRepositoryUrl : RELEASE_REPOSITORY_URL,
+        testRepositoryUrl    : TEST_REPOSITORY_URL,  // 测试上传地址
+        localRepositoryUrl   : LOCAL_REPOSITORY_PATH  // 本地maven上传测试
+]
+// 根据版本名称,来分辨是Release版本还是 snapshots版本
+def isReleaseBuild() {
+    return !POM_VERSION_NAME.contains("SNAPSHOT");
+}
+
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                pom.project {
+                    groupId POM_GROUP_ID
+                    artifactId POM_ARTIFACT_ID
+                    version POM_VERSION_NAME
+                    packaging POM_PACKAGING
+                    description POM_DESCRIPTION
+                }
+//                repository(url: MavenInfo.testRepositoryUrl) {
+//                    authentication(userName: MavenInfo.userName, password: MavenInfo.password)
+//                }
+//                repository(url: isReleaseBuild() ?
+//                        MavenInfo.releaseRepositoryUrl : MavenInfo.snapshotRepositoryUrl) {
+//                    authentication(userName: MavenInfo.userName, password: MavenInfo.password)
+//                }
+                //本地maven上传测试
+                repository(url: "file://${MavenInfo.localRepositoryUrl}")
+            }
+        }
+    }
+    task androidJavadocs(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+        options.encoding = "utf-8"
+        options.charSet = "utf-8"
+        failOnError false
+    }
+    task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+        classifier = 'javadoc'
+        from androidJavadocs.destinationDir
+    }
+    task androidSourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.sourceFiles
+    }
+    artifacts {
+        // API文档
+        archives androidJavadocsJar
+        // 上传源码
+//        archives androidSourcesJar
+    }
+}

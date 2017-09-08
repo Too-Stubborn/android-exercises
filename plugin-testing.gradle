@@ -1,0 +1,41 @@
+/**
+ * ******************** 自动化测试配置 ********************
+ *
+ * 所有属性可以在module里定义并覆盖
+ */
+
+android {
+    defaultConfig {
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    // 测试配置
+    testOptions {
+//        // 注意：设置returnDefaultValues属性，true 应特别小心。空/零返回值可以在测试中，这是很难调试，并可能允许失败测试通过引入回归。只有使用它作为最后的手段
+//        unitTests.returnDefaultValues = true
+        // 测试结果生成路径
+        resultsDir = "${project.buildDir}/testcase/results"
+    }
+    // 解决app和test依赖关系
+    configurations.all {
+        resolutionStrategy.force 'com.android.support:support-annotations:25.0.0',
+                'com.google.code.findbugs:jsr305:3.0.1',
+                'com.google.guava:guava:20.0'
+    }
+}
+dependencies {
+    // 自动化测试
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    // Unit Test
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-all:2.0.2-beta'
+    testCompile 'org.mockito:mockito-core:2.8.9'
+    testCompile 'org.robolectric:robolectric:3.1.4'
+    // UI Test
+//    androidTestCompile 'com.android.support.test:runner:0.5'
+//    androidTestCompile 'com.android.support.test:rules:0.5'
+//    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+//    androidTestCompile 'com.android.support.test.espresso:espresso-web:2.2.2'
+    //    androidTestCompile 'com.google.code.findbugs:jsr305:3.0.1'
+}

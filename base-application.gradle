@@ -1,0 +1,103 @@
+/**
+ * ******************** Application通用配置 ********************
+ *
+ * 所有属性可以在module里定义并覆盖
+ */
+apply plugin: rootProject.ext.plugin.application
+apply plugin: rootProject.ext.plugin.butterknife
+apply plugin: rootProject.ext.plugin.apt
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        // 启用multidex支持
+        multiDexEnabled true
+        // Android studio 2.0以上，开启矢量图
+        vectorDrawables.useSupportLibrary = true
+//        // Android studio 1.5以下，开启矢量图
+//        generatedDensities = []
+
+    }
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "IS_TEST", "true"
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            //自定义字段【true：测试地址 false：线上地址】
+            buildConfigField "boolean", "IS_TEST", "false"
+            //代码混淆
+            minifyEnabled true
+            //zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件【as 1.3版本之前有BUG，会把依赖包里的一些资源文件或者so文件删除，若打包有问题可以尝试改成false】
+            shrinkResources true
+            //加载默认混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    //配置资源文件路径
+    sourceSets {
+        main {
+//            manifest.srcFile 'src/main/AndroidManifest.xml'
+            java.srcDirs = ['src/main/java', 'src/main/kotlin']
+            jniLibs.srcDirs = ['src/main/jniLibs']
+//            aidl.srcDirs = ['src']
+//            renderscript.srcDirs = ['src']
+//            res.srcDirs = ['res']
+        }
+    }
+    //配置JDK
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+    // API 23 移除了httpclient，需加此代码
+    useLibrary 'org.apache.http.legacy'
+    // This is handled for you by the 2.0+ Gradle Plugin
+    aaptOptions {
+//        // Android studio 1.5以下，开启矢量图
+//        additionalParameters "--no-version-vectors"
+        // 解决资源文件问题。例如：Error:Execution failed for task ':app:mergeDebugResources'
+        cruncherEnabled false
+        useNewCruncher false
+    }
+    //移除lint检查的error,打包开始时，lint运行将有可能发生错误，当有异常发生时，此设置将忽略警告，继续运行脚本，若忽略，打包过程将被强行终止
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    // Google官方包
+    compile "com.android.support:appcompat-v7:$rootProject.ext.dependencies.supportLibraryVersion"
+    compile "com.android.support:support-v4:$rootProject.ext.dependencies.supportLibraryVersion"
+    compile "com.android.support:support-annotations:$rootProject.ext.dependencies.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.ext.dependencies.supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.dependencies.supportLibraryVersion"
+    compile "com.android.support.constraint:constraint-layout:$rootProject.ext.dependencies.constraintLayout"
+
+    // Java commons包
+    compile 'org.apache.commons:commons-lang3:3.5'
+
+    /*
+        有关apt自动生成代码的，一定要放在具体module的gradle中定义，
+        不能放在library中依赖，否则不会自动生成代码
+     */
+    // Dagger2
+    compile "com.google.dagger:dagger:$rootProject.ext.dependencies.dagger2Version"
+    apt "com.google.dagger:dagger-compiler:$rootProject.ext.dependencies.dagger2Version"
+    // ButterKnife(PS: 注意和Dagger2配合使用需要注意把annotationProcessor改为apt)
+    compile "com.jakewharton:butterknife:$rootProject.ext.dependencies.butterknifeVersion"
+    apt "com.jakewharton:butterknife-compiler:$rootProject.ext.dependencies.butterknifeVersion"
+
+}
