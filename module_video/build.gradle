@@ -1,0 +1,15 @@
+apply plugin: 'com.android.application'
+apply from: '../base-application.gradle'
+
+android {
+    defaultConfig {
+        applicationId "com.xuhj.video"
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    compile 'com.github.lovetuzitong:MultiImageSelector:1.2'
+    compile project(':library_vitamio_recorder')
+}

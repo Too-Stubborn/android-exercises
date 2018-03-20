@@ -1,0 +1,20 @@
+apply from: rootProject.ext.from.application
+apply from: rootProject.ext.from.testing
+
+android {
+    defaultConfig {
+        applicationId "com.xuhj.databinding"
+        versionCode 1
+        versionName "1.0"
+    }
+    // DataBinding
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    api('com.alibaba.android:virtualview:1.0.5@aar') {
+        transitive = true
+    }
+}

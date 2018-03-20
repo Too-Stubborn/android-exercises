@@ -1,0 +1,13 @@
+apply plugin: 'com.android.application'
+apply from: '../base-application.gradle'
+
+android {
+    defaultConfig {
+        applicationId "com.xuhj.database"
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+}

@@ -1,0 +1,10 @@
+import org.w3c.dom.xpath.XPathResult
+
+def aList = ['a', 2, 'cc']
+def aMap = ['a': 'a', 'b': 2]
+aMap.c = 'c'
+println aMap.findAll {}
+
+def xparser = new XmlSlurper()
+def targetFile = new File("../module_kotlin/src/main/AndroidManifest.xml")
+XPathResult pathResult = xparser.parse(targetFile)

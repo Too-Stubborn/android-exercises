@@ -1,0 +1,56 @@
+/**
+ * 依赖包版本号定义区域
+ */
+ext {
+    android = [
+            compileSdkVersion: 26,  // as 3.0 以后必须大于26
+            buildToolsVersion: '27.0.0',  // as 3.0 以后不需要设置buildTools了
+            minSdkVersion    : 15,
+            targetSdkVersion : 22
+    ]
+    plugin = [
+            library    : 'com.android.library',
+            application: 'com.android.application',
+            butterknife: 'com.jakewharton.butterknife',
+            apt        : 'android-apt',
+            kapt       : 'kotlin-kapt',
+            kotlin     : 'kotlin-android',
+            kotlinEx   : 'kotlin-android-extensions',
+            maven      : 'maven',
+            novoda     : 'com.novoda.bintray-release'
+    ]
+    from = [
+            // library基本配置
+            library    : rootProject.getRootDir().getAbsolutePath() + '/config/base-library.gradle',
+            // application基本配置
+            application: rootProject.getRootDir().getAbsolutePath() + '/config/base-application.gradle',
+            // Maven基本配置
+            maven      : rootProject.getRootDir().getAbsolutePath() + '/config/plugin-maven.gradle',
+            // 打包配置
+            packaging  : rootProject.getRootDir().getAbsolutePath() + '/config/plugin-packaging.gradle',
+            // 集成测试配置
+            testing    : rootProject.getRootDir().getAbsolutePath() + '/config/plugin-testing.gradle',
+    ]
+    dependencies = [
+            // Support
+            supportLibraryVersion: '26.1.0',
+            // Gson
+            gsonVersion          : "2.8.0",
+            // ConstraintLayout
+            constraintLayout     : "1.0.2",
+            // Timber
+            timberVersoin        : "4.6.1",
+            // Retrofit2
+            retrofit2Version     : "2.2.0",
+            // Okhttp3
+            okhttp3Version       : "3.6.0",
+            // Butterknife
+            butterknifeVersion   : "8.4.0",
+            // Glide
+            glideVersion         : "3.8.0",
+            // Dagger2
+            dagger2Version       : "2.11-rc2",
+            // DBFlow
+            dbFlowVersion        : "4.0.5"
+    ]
+}

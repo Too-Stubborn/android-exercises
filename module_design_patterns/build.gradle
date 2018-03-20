@@ -1,0 +1,13 @@
+apply plugin: rootProject.ext.from.application
+
+android {
+
+    defaultConfig {
+        applicationId "com.xuhj.design.patterns"
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+}

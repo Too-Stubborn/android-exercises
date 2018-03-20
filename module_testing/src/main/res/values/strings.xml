@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ModuleJUnit</string>
+
+    <string name="hello"><![CDATA[
+    <img src="%1$d" width="50" height="50"/>订单总额:&#160;&#160;<font color="#FF8901">¥111</font>（可用币:&#160;&#160;222）
+    ]]></string>
+</resources>

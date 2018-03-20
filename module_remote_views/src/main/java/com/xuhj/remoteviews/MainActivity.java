@@ -1,0 +1,40 @@
+package com.xuhj.remoteviews;
+
+
+import android.app.ListActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends ListActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        List<String> list = new ArrayList<>();
+        list.add("通知栏示例");
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
+        setListAdapter(adapter);
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        Intent i = new Intent();
+        switch (position) {
+            case 0:
+                i.setClass(MainActivity.this, NotificationActivity.class);
+                break;
+            default:
+                break;
+        }
+        startActivity(i);
+    }
+
+}

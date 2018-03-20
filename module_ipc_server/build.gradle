@@ -1,0 +1,20 @@
+apply plugin: 'com.android.application'
+apply from: '../base-application.gradle'
+
+android {
+    defaultConfig {
+        applicationId "com.xuhj.ipc.server"
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    //配置资源文件路径
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/aidl']
+        }
+    }
+}
+
+dependencies {
+}

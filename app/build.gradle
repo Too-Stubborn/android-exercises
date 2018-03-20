@@ -1,0 +1,65 @@
+apply from: rootProject.ext.from.application
+apply from: rootProject.ext.from.testing
+apply plugin: rootProject.ext.plugin.butterknife
+
+android {
+    defaultConfig {
+        applicationId "com.xuhj.jellybean"
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    api project(':library_common')
+
+    // ButterKnife
+    implementation "com.jakewharton:butterknife:$rootProject.ext.dependencies.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.dependencies.butterknifeVersion"
+
+    // 桌面未读消息小红点
+
+    //    compile 'me.leolin:ShortcutBadger:1.1.9@aar'
+
+    //    // 下拉刷新
+
+    //    compile 'com.github.Aspsine:SwipeToLoadLayout:1.0.3'
+
+    //    // 图片手势操作
+
+    //    compile 'com.github.chrisbanes.photoview:library:1.2.3'
+
+    //    // gif库
+
+    //    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.2'
+
+    //    // 半透明用户操作提示
+
+    //    compile 'com.github.amlcurran.showcaseview:library:5.4.3'
+
+    //    // 图片选择器
+
+    //    compile 'com.github.lovetuzitong:MultiImageSelector:1.2'
+
+    //    // svg路径绘制
+
+    //    compile 'com.eftimoff:android-pathview:1.0.8@aar'
+
+    //    // 过渡动画
+
+    //    compile 'com.andkulikov:transitionseverywhere:1.6.3'
+
+    //    // 轮播图
+
+    //    compile 'com.flyco.banner:FlycoBanner_Lib:2.0.2@aar'
+
+    //    // ViewAnimationUtils兼容包
+
+    //    compile 'com.github.ozodrukh:CircularReveal:2.0.1@aar'
+
+    //    // html解析库
+
+    //    compile 'org.jsoup:jsoup:1.10.1'
+
+    api 'com.android.support:palette-v7:26.1.0'
+}

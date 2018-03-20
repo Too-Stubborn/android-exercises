@@ -1,0 +1,14 @@
+apply plugin: 'com.android.application'
+apply from: '../base-application.gradle'
+
+android {
+    defaultConfig {
+        applicationId "com.xuhj.dagger"
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    compile 'com.google.dagger:dagger:2.4'
+}

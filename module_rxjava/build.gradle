@@ -1,0 +1,27 @@
+apply from: rootProject.ext.from.application
+
+android {
+    defaultConfig {
+        applicationId "com.xuhj.rxjava"
+        versionCode 1
+        versionName "1.0.0"
+    }
+}
+
+dependencies {
+    // gradle3.0改成一下的写法
+    api project(':library_common')
+    // RxJava
+    compile 'io.reactivex.rxjava2:rxjava:2.0.8'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'com.trello.rxlifecycle2:rxlifecycle:2.0.1'
+    compile 'com.trello.rxlifecycle2:rxlifecycle-android:2.0.1'
+    compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+
+    // EventBus&RxBus
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.github.vitess:rxbus:2.0.1'
+    compile 'com.github.wind0ws:rxbus2:1.0.0'
+    compile 'com.ttsea.jrxbus2:jrxbus2:1.0.2'
+
+}

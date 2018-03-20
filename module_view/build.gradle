@@ -1,0 +1,19 @@
+apply from: rootProject.ext.from.application
+apply from: rootProject.ext.from.testing
+apply plugin: rootProject.ext.plugin.butterknife
+
+android {
+    defaultConfig {
+        applicationId "com.xuhj.view"
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    api project(':library_common')
+
+    // ButterKnife
+    implementation "com.jakewharton:butterknife:$rootProject.ext.dependencies.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.dependencies.butterknifeVersion"
+}

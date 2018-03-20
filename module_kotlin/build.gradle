@@ -1,0 +1,42 @@
+apply from: rootProject.ext.from.application
+apply from: rootProject.ext.from.testing
+
+apply plugin: rootProject.ext.plugin.kapt
+apply plugin: rootProject.ext.plugin.kotlin
+apply plugin: rootProject.ext.plugin.kotlinEx
+
+android {
+    defaultConfig {
+        applicationId "com.xuhj.kotlin"
+        versionCode 1
+        versionName "1.0"
+    }
+    productFlavors {
+        runoob {
+            versionName "1.0-runoob"
+        }
+        official {
+            versionName "1.0-official"
+        }
+    }
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/kotlin']
+        }
+        official{
+            java.srcDirs = ['src/official/java', 'src/official/kotlin']
+        }
+    }
+}
+
+dependencies {
+    // Dagger2
+    compile "com.google.dagger:dagger:$rootProject.ext.dependencies.dagger2Version"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.ext.dependencies.dagger2Version"
+    // DBFlow
+    compile "com.github.Raizlabs.DBFlow:dbflow-core:$rootProject.ext.dependencies.dbFlowVersion"
+    compile "com.github.Raizlabs.DBFlow:dbflow:$rootProject.ext.dependencies.dbFlowVersion"
+    // RXJava 2 support
+    compile "com.github.Raizlabs.DBFlow:dbflow-rx2:$rootProject.ext.dependencies.dbFlowVersion"
+
+}

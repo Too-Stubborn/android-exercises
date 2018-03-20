@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xuhj.ipc.server">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".service.AidlService">
+            <intent-filter>
+                <action android:name="com.xuhj.action.ipc.server.AidlService" />
+            </intent-filter>
+        </service>
+
+        <service android:name=".service.SocketService">
+            <intent-filter>
+                <action android:name="com.xuhj.action.ipc.server.SocketService" />
+            </intent-filter>
+        </service>
+
+        <service android:name=".service.BinderPoolService">
+            <intent-filter>
+                <action android:name="com.xuhj.action.ipc.server.BinderPoolService" />
+            </intent-filter>
+        </service>
+
+        <provider
+            android:name=".service.UserProvider"
+            android:authorities="com.xuhj.ipc.server.service.UserProvider"
+            android:exported="true" />
+
+    </application>
+
+</manifest>

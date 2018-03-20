@@ -1,0 +1,12 @@
+apply plugin: 'com.android.library'
+apply from: '../base-library.gradle'
+
+android {
+
+    //配置资源文件路径
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
+}

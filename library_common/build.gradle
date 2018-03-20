@@ -1,8 +1,6 @@
 apply from: rootProject.ext.from.library
-apply from: rootProject.ext.from.maven
-
 apply plugin: rootProject.ext.plugin.butterknife
-apply plugin: rootProject.ext.plugin.apt
+//apply plugin: rootProject.ext.plugin.apt
 
 android {
     /*
@@ -10,88 +8,92 @@ android {
         依赖的application中这样添加
         debugCompile project(path: ':library_common', configuration: 'debug')
         releaseCompile project(path: ':library_common', configuration: 'release')
+        gradle3.0改成一下的写法
+        api project(':library_common')
      */
     publishNonDefault true
 }
 
 dependencies {
     // Google官方包
-    //    // 以下模块有需要再加
-    //    compile "com.android.support:support-vector-drawable:$rootProject.ext.dependencies.supportLibraryVersion"
-    compile "com.android.support:cardview-v7:$rootProject.ext.dependencies.supportLibraryVersion"
-    //    compile "com.android.support:palette-v7:$rootProject.ext.dependencies.supportLibraryVersion"
-    //    compile "com.android.support:gridlayout-v7:$rootProject.ext.dependencies.supportLibraryVersion"
-    compile 'com.google.android:flexbox:0.3.0'
+    // 以下模块有需要再加
+//    api "com.android.support:support-vector-drawable:$rootProject.ext.dependencies.supportLibraryVersion"
+//    api "com.android.support:cardview-v7:$rootProject.ext.dependencies.supportLibraryVersion"
+//    api "com.android.support:palette-v7:$rootProject.ext.dependencies.supportLibraryVersion"
+//    api "com.android.support:gridlayout-v7:$rootProject.ext.dependencies.supportLibraryVersion"
+//    api 'com.google.android:flexbox:0.3.0'
 
     // Gson
-    compile "com.google.code.gson:gson:$rootProject.ext.dependencies.gsonVersion"
+    api "com.google.code.gson:gson:$rootProject.ext.dependencies.gsonVersion"
 
     // Retrofit
-    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.dependencies.retrofit2Version"
-    compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.dependencies.retrofit2Version"
-    compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.dependencies.retrofit2Version"
+    api "com.squareup.retrofit2:retrofit:$rootProject.ext.dependencies.retrofit2Version"
+    api "com.squareup.retrofit2:converter-gson:$rootProject.ext.dependencies.retrofit2Version"
+    api "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.dependencies.retrofit2Version"
 
     // Okhttp
-    compile "com.squareup.okhttp3:okhttp:$rootProject.ext.dependencies.okhttp3Version"
-    compile "com.squareup.okhttp3:okhttp-urlconnection:$rootProject.ext.dependencies.okhttp3Version"
-    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.dependencies.okhttp3Version"
-    compile "com.squareup.okhttp3:okhttp-android-support:$rootProject.ext.dependencies.okhttp3Version"
+    api "com.squareup.okhttp3:okhttp:$rootProject.ext.dependencies.okhttp3Version"
+    api "com.squareup.okhttp3:okhttp-urlconnection:$rootProject.ext.dependencies.okhttp3Version"
+    api "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.dependencies.okhttp3Version"
+    api "com.squareup.okhttp3:okhttp-android-support:$rootProject.ext.dependencies.okhttp3Version"
 
     // RxJava
-    compile 'io.reactivex.rxjava2:rxjava:2.0.8'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile 'com.trello.rxlifecycle2:rxlifecycle:2.0.1'
-    compile 'com.trello.rxlifecycle2:rxlifecycle-android:2.0.1'
-    compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
-    compile 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
+    api 'io.reactivex.rxjava2:rxjava:2.0.8'
+    api 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    api 'com.trello.rxlifecycle2:rxlifecycle:2.0.1'
+    api 'com.trello.rxlifecycle2:rxlifecycle-android:2.0.1'
+    api 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    api 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
 
     // Dagger2
-    compile "com.google.dagger:dagger:$rootProject.ext.dependencies.dagger2Version"
+    implementation "com.google.dagger:dagger:$rootProject.ext.dependencies.dagger2Version"
     // apt注入一定要在module的gradle中定义，不能依赖library中的依赖包，否则不会自动生成代码
-    apt "com.google.dagger:dagger-compiler:$rootProject.ext.dependencies.dagger2Version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dependencies.dagger2Version"
 
     // ButterKnife (PS: 注意和Dagger2配合使用需要注意把annotationProcessor改为apt)
-    compile "com.jakewharton:butterknife:$rootProject.ext.dependencies.butterknifeVersion"
-    apt "com.jakewharton:butterknife-compiler:$rootProject.ext.dependencies.butterknifeVersion"
+    implementation "com.jakewharton:butterknife:$rootProject.ext.dependencies.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.dependencies.butterknifeVersion"
 
     // Glide图片加载
-    compile "com.github.bumptech.glide:glide:$rootProject.ext.dependencies.glideVersion"
+    api "com.github.bumptech.glide:glide:$rootProject.ext.dependencies.glideVersion"
     // Glide图片加载处理
-    compile 'jp.wasabeef:glide-transformations:1.0.6'
+    api 'jp.wasabeef:glide-transformations:1.0.6'
+
+    // 阿里开源
+    api('com.alibaba.android:vlayout:1.2.8@aar') {
+        transitive = true
+    }
+    api('com.alibaba.android:virtualview:1.0.5@aar') {
+        transitive = true
+    }
+    api('com.alibaba.android:ultraviewpager:1.0.6.1@aar') {
+        transitive = true
+    }
 
     // 友盟统计
-    compile 'com.umeng.analytics:analytics:6.1.1'
+    api 'com.umeng.analytics:analytics:6.1.1'
 
-    //    // 动画兼容包，有需要再加
-    compile 'com.nineoldandroids:library:2.4.0'
-    //    // 工具包，因为方法太多，容易出现64K，所以谨慎使用
-    //    compile 'com.google.guava:guava:20.0'
+    // 动画兼容包，有需要再加
+//    api 'com.nineoldandroids:library:2.4.0'
+    // 工具包，因为方法太多，容易出现64K，所以谨慎使用
+//    api 'com.google.guava:guava:20.0'
 
     // 日志输出
-    compile 'com.jakewharton.timber:timber:4.5.1'
+    api 'com.jakewharton.timber:timber:4.5.1'
 
     // 下载管理
-    compile 'zlc.season:rxdownload2:2.0.2'
+    api 'zlc.season:rxdownload2:2.0.2'
 
     // 兼容包ViewAnimationUtils.createCircularReveal for  API14+
-    compile('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
+    api('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
         transitive = true;
     }
-    // 阿里开源的 布局组件
-    compile('com.alibaba.android:vlayout:1.0.7@aar') {
-        transitive = true
-    }
-    // 阿里开源的 viewpager
-    compile('com.alibaba.android:ultraviewpager:1.0.4@aar') {
-        transitive = true
-    }
-
     // 图片浏览手势操作
-    compile 'com.github.chrisbanes.photoview:library:1.2.4'
+    api 'com.github.chrisbanes.photoview:library:1.2.4'
 
     // DBFlow
-    compile "com.github.Raizlabs.DBFlow:dbflow-core:$rootProject.ext.dependencies.dbFlowVersion"
-    compile "com.github.Raizlabs.DBFlow:dbflow:$rootProject.ext.dependencies.dbFlowVersion"
+    api "com.github.Raizlabs.DBFlow:dbflow-core:$rootProject.ext.dependencies.dbFlowVersion"
+    api "com.github.Raizlabs.DBFlow:dbflow:$rootProject.ext.dependencies.dbFlowVersion"
     // RXJava 2 support
-    compile "com.github.Raizlabs.DBFlow:dbflow-rx2:$rootProject.ext.dependencies.dbFlowVersion"
+    api "com.github.Raizlabs.DBFlow:dbflow-rx2:$rootProject.ext.dependencies.dbFlowVersion"
 }

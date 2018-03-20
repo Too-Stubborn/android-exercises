@@ -1,0 +1,100 @@
+/**
+ * ******************** Application通用配置 ********************
+ *
+ * 所有属性可以在module里定义并覆盖
+ */
+apply plugin: rootProject.ext.plugin.application
+apply plugin: rootProject.ext.plugin.kotlin
+apply plugin: rootProject.ext.plugin.kotlinEx
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    // gradle3.0以上不需要
+//    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        // 启用multidex支持
+        multiDexEnabled true
+        // Android studio 2.0以上，开启矢量图
+        vectorDrawables.useSupportLibrary = true
+//        // Android studio 1.5以下，开启矢量图
+//        generatedDensities = []
+
+    }
+    buildTypes {
+        debug {
+//            // 关键代码，release， debug为library中已有buildType
+//            matchingFallbacks = ['release', 'debug']
+            buildConfigField "String", "ENV", "\"${ENV}\""
+            buildConfigField "boolean", "IS_TEST", IS_TEST
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+//            // 关键代码，release， debug为library中已有buildType
+//            matchingFallbacks = ['release', 'debug']
+            // 打包环境配置{ "dev":"开发", "beta":"测试", "stable":"发布"}
+            buildConfigField "String", "ENV", "\"stable\""
+            // 环境配置{"true":"测试服务器", "false":"正式服务器"}
+            buildConfigField "boolean", "IS_TEST", "false"
+            //代码混淆
+            minifyEnabled true
+            //zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件【as 1.3版本之前有BUG，会把依赖包里的一些资源文件或者so文件删除，若打包有问题可以尝试改成false】
+            shrinkResources true
+            //加载默认混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    //配置资源文件路径
+    sourceSets {
+        main {
+//            manifest.srcFile 'src/main/AndroidManifest.xml'
+            java.srcDirs = ['src/main/java', 'src/main/kotlin']
+            jniLibs.srcDirs = ['src/main/jniLibs']
+//            assets.srcDirs = ['src/main/assets/']
+//            aidl.srcDirs = ['src']
+//            renderscript.srcDirs = ['src']
+//            res.srcDirs = ['res']
+        }
+    }
+    //配置JDK
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+    // API 23 移除了httpclient，需加此代码
+    useLibrary 'org.apache.http.legacy'
+
+    // This is handled for you by the 2.0+ Gradle Plugin
+    aaptOptions {
+//        // Android studio 1.5以下，开启矢量图
+//        additionalParameters "--no-version-vectors"
+        // 解决资源文件问题。例如：Error:Execution failed for task ':app:mergeDebugResources'
+        cruncherEnabled false
+        useNewCruncher false
+    }
+    //移除lint检查的error,打包开始时，lint运行将有可能发生错误，当有异常发生时，此设置将忽略警告，继续运行脚本，若忽略，打包过程将被强行终止
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    // Google官方包（基础包）
+    api "com.android.support:support-v4:$rootProject.ext.dependencies.supportLibraryVersion"
+    api "com.android.support:support-annotations:$rootProject.ext.dependencies.supportLibraryVersion"
+    api "com.android.support:appcompat-v7:$rootProject.ext.dependencies.supportLibraryVersion"
+    api "com.android.support:design:$rootProject.ext.dependencies.supportLibraryVersion"
+    api "com.android.support.constraint:constraint-layout:$rootProject.ext.dependencies.constraintLayout"
+    api "com.android.support:recyclerview-v7:$rootProject.ext.dependencies.supportLibraryVersion"
+    // Kotlin
+    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+}

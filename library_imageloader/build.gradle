@@ -1,0 +1,25 @@
+//apply from: rootProject.ext.from.library
+apply from: rootProject.ext.from.application
+apply from: rootProject.ext.from.testing
+
+android {
+    defaultConfig {
+        applicationId "com.xuhj.retrofit"
+        versionCode 1
+        versionName "1.0"
+    }
+    /*
+        解决依赖包里使用BuildConfig.DEBUG的问题
+        依赖的application中这样添加
+        debugCompile project(path: ':library_common', configuration: 'debug')
+        releaseCompile project(path: ':library_common', configuration: 'release')
+     */
+    publishNonDefault true
+}
+
+dependencies {
+    // Glide图片加载
+    compile "com.github.bumptech.glide:glide:$rootProject.ext.dependencies.glideVersion"
+    // Glide图片加载处理
+    compile 'jp.wasabeef:glide-transformations:1.0.6'
+}

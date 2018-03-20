@@ -1,0 +1,18 @@
+apply plugin: 'com.android.application'
+apply from: '../base-application.gradle'
+
+android {
+    defaultConfig {
+        applicationId "com.xuhj.mvp"
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    debugCompile project(path: ':library_common', configuration: 'debug')
+    releaseCompile project(path: ':library_common', configuration: 'release')
+
+    compile "com.google.dagger:dagger:$rootProject.ext.dagger2Version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2Version"
+}

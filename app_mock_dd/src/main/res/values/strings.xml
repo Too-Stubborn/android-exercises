@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">钉钉自动打卡</string>
+    <string name="accessibility_service_mock">钉钉自动打卡服务</string>
+</resources>

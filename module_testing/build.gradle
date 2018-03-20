@@ -1,0 +1,24 @@
+apply plugin: 'com.android.application'
+apply from: '../base-application.gradle'
+apply from: '../plugin-testing.gradle'
+
+android {
+    defaultConfig {
+        applicationId "com.xuhj.testing"
+        versionCode 1
+        versionName "1.0.0"
+    }
+    // 测试配置
+    testOptions {
+//        // 注意：设置returnDefaultValues属性，true 应特别小心。空/零返回值可以在测试中，这是很难调试，并可能允许失败测试通过引入回归。只有使用它作为最后的手段
+//        unitTests.returnDefaultValues = true
+        // 测试结果生成路径
+        resultsDir = "${project.buildDir}/xuhj/results"
+    }
+}
+
+dependencies {
+    debugCompile project(path: ':library_common', configuration: 'debug')
+    releaseCompile project(path: ':library_common', configuration: 'release')
+    compile 'org.mockito:mockito-core:2.8.9'
+}

@@ -1,0 +1,16 @@
+apply plugin: 'com.android.application'
+apply from: '../base-application.gradle'
+
+android {
+    defaultConfig {
+        applicationId "com.xuhj.remoteviews"
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    compile 'com.nineoldandroids:library:2.4.0'
+    debugCompile project(path: ':library_common', configuration: 'debug')
+    releaseCompile project(path: ':library_common', configuration: 'release')
+}

@@ -1,0 +1,16 @@
+apply plugin: 'com.android.application'
+apply from: '../base-application.gradle'
+
+android {
+
+    defaultConfig {
+        minSdkVersion 18
+
+        applicationId "com.xuhj.mock.dd"
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+}

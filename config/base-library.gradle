@@ -1,0 +1,48 @@
+/**
+ * ******************** Library通用配置 ********************
+ *
+ * 所有属性可以在module里定义并覆盖
+ */
+apply plugin: rootProject.ext.plugin.library
+apply plugin: rootProject.ext.plugin.kotlin
+apply plugin: rootProject.ext.plugin.kotlinEx
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    // gradle3.0以上不需要
+//    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    /*
+        解决依赖包里使用BuildConfig.DEBUG的问题
+        依赖的application中这样添加
+        debugCompile project(path: ':library_common', configuration: 'debug')
+        releaseCompile project(path: ':library_common', configuration: 'release')
+        gradle3.0改成一下的写法
+        api project(':library_common')
+     */
+//    publishNonDefault true
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    // Google官方包（基础包）
+    api "com.android.support:support-v4:$rootProject.ext.dependencies.supportLibraryVersion"
+    api "com.android.support:support-annotations:$rootProject.ext.dependencies.supportLibraryVersion"
+    api "com.android.support:appcompat-v7:$rootProject.ext.dependencies.supportLibraryVersion"
+    api "com.android.support:design:$rootProject.ext.dependencies.supportLibraryVersion"
+    api "com.android.support.constraint:constraint-layout:$rootProject.ext.dependencies.constraintLayout"
+    api "com.android.support:recyclerview-v7:$rootProject.ext.dependencies.supportLibraryVersion"
+    // Kotlin
+    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    // 工具包，因为方法太多，容易出现64K，所以谨慎使用
+//    api 'com.google.guava:guava:20.0'
+    // Java commons包
+//    api 'org.apache.commons:commons-lang3:3.5'
+
+}
