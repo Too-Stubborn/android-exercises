@@ -1,0 +1,7 @@
+
+task test{
+    group 'demo'
+    description 'it\'s test hahaha'
+    dependsOn hello,array
+    println 'test'
+}

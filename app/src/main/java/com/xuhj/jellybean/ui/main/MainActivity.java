@@ -8,11 +8,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.xuhj.jellybean.ui.activity_stack.Test1Activity;
+import com.xuhj.jellybean.ui.imageview.DynamicImageViewActivity;
 import com.xuhj.jellybean.ui.materialdesign.StatusBarActivity;
 import com.xuhj.jellybean.ui.recyclerview.RecyclerViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import timber.log.Timber;
 
 /**
  * 首页
@@ -30,10 +33,12 @@ public class MainActivity extends ListActivity {
         list.add("RecyclerView的使用");
         list.add("vlayout的使用");
         list.add("MaterialDesign的使用");
+        list.add("图片体感展示");
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
         setListAdapter(adapter);
 
+        Timber.d(getPackageManager().getSystemSharedLibraryNames().toString());
     }
 
     @Override
@@ -51,6 +56,9 @@ public class MainActivity extends ListActivity {
                 break;
             case 3:
                 StatusBarActivity.newInstance(this);
+                break;
+            case 4:
+                DynamicImageViewActivity.newInstance(this);
                 break;
             default:
                 break;

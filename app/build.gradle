@@ -8,15 +8,22 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    dataBinding {
+        enabled true
+    }
 }
 
 dependencies {
-    api project(':library_common')
+    api project(':library-common')
 
     // ButterKnife
     implementation "com.jakewharton:butterknife:$rootProject.ext.dependencies.butterknifeVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.dependencies.butterknifeVersion"
 
+    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+    implementation 'jp.wasabeef:glide-transformations:3.1.1'
     // 桌面未读消息小红点
 
     //    compile 'me.leolin:ShortcutBadger:1.1.9@aar'
@@ -61,5 +68,6 @@ dependencies {
 
     //    compile 'org.jsoup:jsoup:1.10.1'
 
-    api 'com.android.support:palette-v7:26.1.0'
+    // 体感ImageView
+    implementation 'com.gjiazhe:PanoramaImageView:1.0'
 }

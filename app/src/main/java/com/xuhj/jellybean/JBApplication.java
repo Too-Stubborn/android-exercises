@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.xuhj.library.util.ActivityManager;
 
+import timber.log.Timber;
+
 
 /**
  * 应用全局处理类
@@ -41,6 +43,13 @@ public class JBApplication extends Application {
             }
         });
 
+        init();
+    }
+
+    private void init() {
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
     }
 
     /**

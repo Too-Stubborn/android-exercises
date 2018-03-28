@@ -26,6 +26,8 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenCentral()
+        mavenLocal()
 
         maven { url "https://jitpack.io" }
         // 阿里的maven库，速度比较快

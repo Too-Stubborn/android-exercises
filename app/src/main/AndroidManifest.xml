@@ -29,7 +29,6 @@
         </activity>
         <activity android:name=".ui.recyclerview.RecyclerViewActivity" />
         <activity android:name=".ui.materialdesign.StatusBarActivity" />
-
         <activity
             android:name=".ui.activity_stack.Test1Activity"
             android:launchMode="standard" />
@@ -39,6 +38,8 @@
         <activity
             android:name=".ui.activity_stack.Test3Activity"
             android:launchMode="standard" />
+        <activity android:name=".ui.imageview.DynamicImageViewActivity" />
+        <activity android:name=".ui.dbrealm.DBRealmActivity"></activity>
     </application>
 
 </manifest>
