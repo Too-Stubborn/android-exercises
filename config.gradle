@@ -16,20 +16,19 @@ ext {
             kapt       : 'kotlin-kapt',
             kotlin     : 'kotlin-android',
             kotlinEx   : 'kotlin-android-extensions',
-            maven      : 'maven',
             novoda     : 'com.novoda.bintray-release'
     ]
     from = [
             // library基本配置
-            library    : rootProject.getRootDir().getAbsolutePath() + '/config/base-library.gradle',
+            library    : rootProject.getRootDir().getAbsolutePath() + '/config/gradles/base-library.gradle',
             // application基本配置
-            application: rootProject.getRootDir().getAbsolutePath() + '/config/base-application.gradle',
+            application: rootProject.getRootDir().getAbsolutePath() + '/config/gradles/base-application.gradle',
             // Maven基本配置
-            maven      : rootProject.getRootDir().getAbsolutePath() + '/config/plugin-maven.gradle',
+            maven      : rootProject.getRootDir().getAbsolutePath() + '/config/gradles/plugin-maven.gradle',
             // 打包配置
-            packaging  : rootProject.getRootDir().getAbsolutePath() + '/config/plugin-packaging.gradle',
+            packaging  : rootProject.getRootDir().getAbsolutePath() + '/config/gradles/plugin-packaging.gradle',
             // 集成测试配置
-            testing    : rootProject.getRootDir().getAbsolutePath() + '/config/plugin-testing.gradle',
+            testing    : rootProject.getRootDir().getAbsolutePath() + '/config/gradles/plugin-testing.gradle',
     ]
     dependencies = [
             // Support

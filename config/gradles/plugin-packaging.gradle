@@ -28,23 +28,26 @@ android {
             signingConfig signingConfigs.release
         }
     }
+    // 维度，AS3.0以上需要所有渠道必须指定一个维度
+    flavorDimensions 'default'
     //多渠道打包
     productFlavors {
         'Dev' {}
         'Testing' {}
         'Official' {}
         productFlavors.all { flavor ->
+            flavor.dimension = 'default'
             flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
         }
     }
     //打包apk时自定义名字
-//    applicationVariants.all {
-//        variant ->
-//            variant.outputs.each { output ->
-//                def oldFile = output.outputFile
-//                output.outputFile = new File(oldFile.parent, oldFile.name.replace(".apk", time() + ".apk"))
-//            }
-//    }
+    applicationVariants.all {
+        variant ->
+            variant.outputs.each { output ->
+                def oldFile = output.outputFile
+                output.outputFile = new File(oldFile.parent, oldFile.name.replace(".apk", time() + ".apk"))
+            }
+    }
     //apk前缀名字，此属性需要具体模块覆写app名称
-//    project.archivesBaseName = "Company" + "-v" + defaultConfig.versionName;
+    project.archivesBaseName = "AppName" + "-v" + defaultConfig.versionName;
 }

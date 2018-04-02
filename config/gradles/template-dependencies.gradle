@@ -1,0 +1,96 @@
+apply from: rootProject.ext.from.application
+apply from: rootProject.ext.from.library
+apply from: rootProject.ext.from.maven
+apply from: rootProject.ext.from.packaging
+apply from: rootProject.ext.from.testing
+
+apply plugin: rootProject.ext.plugin.library
+apply plugin: rootProject.ext.plugin.application
+apply plugin: rootProject.ext.plugin.butterknife
+apply plugin: rootProject.ext.plugin.kapt
+apply plugin: rootProject.ext.plugin.kotlin
+apply plugin: rootProject.ext.plugin.kotlinEx
+
+dependencies {
+    // Google官方包
+    // 以下模块有需要再加
+    implementation "com.android.support:support-vector-drawable:$rootProject.ext.dependencies.supportLibraryVersion"
+    implementation "com.android.support:cardview-v7:$rootProject.ext.dependencies.supportLibraryVersion"
+    implementation "com.android.support:palette-v7:$rootProject.ext.dependencies.supportLibraryVersion"
+    implementation "com.android.support:gridlayout-v7:$rootProject.ext.dependencies.supportLibraryVersion"
+    implementation 'com.google.android:flexbox:0.3.0'
+
+    // Gson
+    implementation "com.google.code.gson:gson:$rootProject.ext.dependencies.gsonVersion"
+
+    // ButterKnife
+    implementation "com.jakewharton:butterknife:$rootProject.ext.dependencies.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.dependencies.butterknifeVersion"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.dependencies.retrofit2Version"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.dependencies.retrofit2Version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.dependencies.retrofit2Version"
+
+    // Okhttp
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.dependencies.okhttp3Version"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:$rootProject.ext.dependencies.okhttp3Version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.dependencies.okhttp3Version"
+    implementation "com.squareup.okhttp3:okhttp-android-support:$rootProject.ext.dependencies.okhttp3Version"
+
+    // RxJava
+    implementation 'io.reactivex.rxjava2:rxjava:2.0.8'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle:2.0.1'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-android:2.0.1'
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    implementation 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
+
+    // Dagger2
+    implementation "com.google.dagger:dagger:$rootProject.ext.dependencies.dagger2Version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dependencies.dagger2Version"
+
+    // Glide图片加载
+    implementation "com.github.bumptech.glide:glide:$rootProject.ext.dependencies.glideVersion"
+    // Glide图片加载处理
+    implementation 'jp.wasabeef:glide-transformations:1.0.6'
+
+    // 阿里开源
+    implementation('com.alibaba.android:vlayout:1.2.8@aar') {
+        transitive = true
+    }
+    implementation('com.alibaba.android:virtualview:1.0.5@aar') {
+        transitive = true
+    }
+    implementation('com.alibaba.android:ultraviewpager:1.0.6.1@aar') {
+        transitive = true
+    }
+
+    // 友盟统计
+    implementation 'com.umeng.analytics:analytics:6.1.1'
+
+    // 动画兼容包，有需要再加
+    implementation 'com.nineoldandroids:library:2.4.0'
+    // 工具包，因为方法太多，容易出现64K，所以谨慎使用
+    implementation 'com.google.guava:guava:20.0'
+
+    // 日志输出
+    implementation 'com.jakewharton.timber:timber:4.5.1'
+
+    // 下载管理
+    implementation 'zlc.season:rxdownload2:2.0.2'
+
+    // 兼容包ViewAnimationUtils.createCircularReveal for  API14+
+    implementation('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
+        transitive = true;
+    }
+
+    // 图片浏览手势操作
+    implementation 'com.github.chrisbanes.photoview:library:1.2.4'
+
+    // DBFlow
+    implementation "com.github.Raizlabs.DBFlow:dbflow-core:$rootProject.ext.dependencies.dbFlowVersion"
+    implementation "com.github.Raizlabs.DBFlow:dbflow:$rootProject.ext.dependencies.dbFlowVersion"
+    // RXJava 2 support
+    implementation "com.github.Raizlabs.DBFlow:dbflow-rx2:$rootProject.ext.dependencies.dbFlowVersion"
+}

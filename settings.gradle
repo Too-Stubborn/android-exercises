@@ -1,20 +1,18 @@
 /*
-    Library
+    modules-biz
  */
-include ':library-common'
-//include ':base_library:common'
-//include ':base_library:http'
-//include ':base_library:imageloader'
+include ':apps:app-template'
 
 /*
-    Module
+    modules-base
  */
-include ':app'
-//include ':module_kotlin'
-//include ':module_view'
-//include ':module_databinding'
-//include ':module_rxjava'
-//include ':module_ipc_client'
-//include ':module_ipc_server'
-//include ':module_design_patterns'
-//include ':module-tangram'
+include ':modules:base:module-base-core'
+include ':modules:base:module-base-router'
+
+/*
+    modules-components
+ */
+
+/*
+    modules-ext
+ */

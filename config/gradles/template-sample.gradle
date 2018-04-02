@@ -1,0 +1,39 @@
+if (IS_MODULE.toBoolean()) {
+    apply from: rootProject.ext.from.library
+} else {
+    apply from: rootProject.ext.from.application
+}
+//apply from: rootProject.ext.from.maven
+apply plugin: rootProject.ext.plugin.butterknife
+
+android {
+    defaultConfig {
+        if (!IS_MODULE.toBoolean()) {
+            applicationId "com.xxx.xxx"
+            versionCode 1
+            versionName "1.0.0"
+        }
+    }
+
+    sourceSets {
+        def sampleDir = 'sample'
+        main {
+            if (IS_MODULE.toBoolean()) {
+                //集成开发模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude "${sampleDir}/**"
+                }
+            } else {
+                Manifest.srcFile "src/${sampleDir}/AndroidManifest.xml"
+                java.srcDir("src/${sampleDir}/java")
+                res.srcDir("src/${sampleDir}/res")
+            }
+        }
+    }
+}
+
+dependencies {
+    // ButterKnife
+    implementation "com.jakewharton:butterknife:$rootProject.ext.dependencies.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.dependencies.butterknifeVersion"
+}
