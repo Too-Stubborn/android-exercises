@@ -3,7 +3,7 @@
  */
 ext {
     android = [
-            compileSdkVersion: 26,  // as 3.0 以后必须大于26
+            compileSdkVersion: 27,  // as 3.0 以后必须大于26
             buildToolsVersion: '27.0.0',  // as 3.0 以后不需要设置buildTools了
             minSdkVersion    : 15,
             targetSdkVersion : 22
@@ -32,24 +32,37 @@ ext {
     ]
     dependencies = [
             // Support
-            supportLibraryVersion: '26.1.0',
+            supportLibraryVersion: '27.1.1',
+            // Kotlin anko
+            ankoVersion          : '0.10.4',
             // Gson
-            gsonVersion          : "2.8.0",
+            gsonVersion          : '2.8.0',
             // ConstraintLayout
-            constraintLayout     : "1.0.2",
+            constraintLayout     : '1.0.2',
             // Timber
-            timberVersoin        : "4.6.1",
+            timberVersoin        : '4.6.1',
             // Retrofit2
-            retrofit2Version     : "2.2.0",
+            retrofit2Version     : '2.2.0',
             // Okhttp3
-            okhttp3Version       : "3.6.0",
+            okhttp3Version       : '3.6.0',
             // Butterknife
-            butterknifeVersion   : "8.4.0",
+            butterknifeVersion   : '8.4.0',
             // Glide
-            glideVersion         : "3.8.0",
+            glideVersion         : '4.6.1',
             // Dagger2
-            dagger2Version       : "2.11-rc2",
+            dagger2Version       : '2.11-rc2',
+            // EventBus
+            eventBusVersion      : '3.1.1',
             // DBFlow
-            dbFlowVersion        : "4.0.5"
+            dbFlowVersion        : '4.0.5',
+            // RxJava2
+            rxjava2Version       : [
+                    rxjava            : '2.0.8',
+                    rxandroid         : '2.0.1',
+                    rxlifecycle       : '2.0.1',
+                    rxlifecycleAndroid: '2.0.1',
+                    rxbinding         : '2.0.0',
+                    rxrelay           : '2.0.0'
+            ]
     ]
 }

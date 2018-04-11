@@ -11,6 +11,18 @@ apply plugin: rootProject.ext.plugin.kapt
 apply plugin: rootProject.ext.plugin.kotlin
 apply plugin: rootProject.ext.plugin.kotlinEx
 
+android {
+    /*
+        解决依赖包里使用BuildConfig.DEBUG的问题
+        依赖的application中这样添加
+        debugCompile project(path: ':library_common', configuration: 'debug')
+        releaseCompile project(path: ':library_common', configuration: 'release')
+        gradle3.0改成一下的写法
+        implementation project(':library_common')
+     */
+    publishNonDefault true
+}
+
 dependencies {
     // Google官方包
     // 以下模块有需要再加
@@ -39,12 +51,12 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp-android-support:$rootProject.ext.dependencies.okhttp3Version"
 
     // RxJava
-    implementation 'io.reactivex.rxjava2:rxjava:2.0.8'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    implementation 'com.trello.rxlifecycle2:rxlifecycle:2.0.1'
-    implementation 'com.trello.rxlifecycle2:rxlifecycle-android:2.0.1'
-    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
-    implementation 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.dependencies.rxjava2Version.rxjava"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.dependencies.rxjava2Version.rxandroid"
+    implementation "com.trello.rxlifecycle2:rxlifecycle:$rootProject.ext.dependencies.rxjava2Version.rxlifecycle"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-android:$rootProject.ext.dependencies.rxjava2Version.rxlifecycleAndroid"
+    implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.ext.dependencies.rxjava2Version.rxbinding"
+    implementation "com.jakewharton.rxrelay2:rxrelay:$rootProject.ext.dependencies.rxjava2Version.rxrelay"
 
     // Dagger2
     implementation "com.google.dagger:dagger:$rootProject.ext.dependencies.dagger2Version"

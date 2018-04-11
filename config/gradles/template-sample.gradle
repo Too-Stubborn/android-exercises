@@ -24,7 +24,7 @@ android {
                     exclude "${sampleDir}/**"
                 }
             } else {
-                Manifest.srcFile "src/${sampleDir}/AndroidManifest.xml"
+                manifest.srcFile "src/${sampleDir}/AndroidManifest.xml"
                 java.srcDir("src/${sampleDir}/java")
                 res.srcDir("src/${sampleDir}/res")
             }

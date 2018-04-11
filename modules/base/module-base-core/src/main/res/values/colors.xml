@@ -49,8 +49,6 @@
     <color name="divider_line_grey">#E1E1E1</color>
     <!-- 分割线颜色，深色-->
     <color name="divider_line_grey_deep">#BEBEBE</color>
-    <!-- 分割线颜色，深色-->
-    <color name="divider_line_grey_deep_msg">#d8d8d8</color>
 
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>

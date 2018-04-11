@@ -89,7 +89,7 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     // Google官方包（基础包）
-    api "com.android.support:support-v4:$rootProject.ext.dependencies.supportLibraryVersion"
+//    api "com.android.support:support-v4:$rootProject.ext.dependencies.supportLibraryVersion"
     api "com.android.support:support-annotations:$rootProject.ext.dependencies.supportLibraryVersion"
     api "com.android.support:appcompat-v7:$rootProject.ext.dependencies.supportLibraryVersion"
     api "com.android.support:design:$rootProject.ext.dependencies.supportLibraryVersion"
@@ -97,5 +97,6 @@ dependencies {
     api "com.android.support:recyclerview-v7:$rootProject.ext.dependencies.supportLibraryVersion"
     // Kotlin
     api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    api "org.jetbrains.anko:anko:$rootProject.ext.dependencies.ankoVersion"
 
 }

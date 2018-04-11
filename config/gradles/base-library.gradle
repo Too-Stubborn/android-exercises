@@ -32,7 +32,7 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     // Google官方包（基础包）
-    api "com.android.support:support-v4:$rootProject.ext.dependencies.supportLibraryVersion"
+//    api "com.android.support:support-v4:$rootProject.ext.dependencies.supportLibraryVersion"
     api "com.android.support:support-annotations:$rootProject.ext.dependencies.supportLibraryVersion"
     api "com.android.support:appcompat-v7:$rootProject.ext.dependencies.supportLibraryVersion"
     api "com.android.support:design:$rootProject.ext.dependencies.supportLibraryVersion"

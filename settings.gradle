@@ -1,17 +1,20 @@
 /*
     modules-biz
  */
-include ':apps:app-template'
+//include ':apps:app-template'
 
 /*
     modules-base
  */
 include ':modules:base:module-base-core'
+include ':modules:base:module-base-eventbus'
 include ':modules:base:module-base-router'
 
 /*
     modules-components
  */
+include ':modules:components:component-network'
+include ':modules:components:component-imageloader'
 
 /*
     modules-ext

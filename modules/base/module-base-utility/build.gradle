@@ -1,0 +1,42 @@
+if (IS_MODULE.toBoolean()) {
+    apply from: rootProject.ext.from.library
+} else {
+    apply from: rootProject.ext.from.application
+}
+//apply from: rootProject.ext.from.maven
+apply plugin: rootProject.ext.plugin.butterknife
+//apply plugin: 'kotlin-kapt'
+
+android {
+    defaultConfig {
+        if (!IS_MODULE.toBoolean()) {
+            applicationId "com.xuhj.base.utility"
+            versionCode 1
+            versionName "1.0.0"
+        }
+    }
+
+    sourceSets {
+        def sampleDir = 'sample'
+        main {
+            if (IS_MODULE.toBoolean()) {
+                //集成开发模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude "${sampleDir}/**"
+                }
+            } else {
+                manifest.srcFile "src/${sampleDir}/AndroidManifest.xml"
+                java.srcDir("src/${sampleDir}/java")
+                res.srcDir("src/${sampleDir}/res")
+            }
+        }
+    }
+}
+
+dependencies {
+    // Gson
+    implementation "com.google.code.gson:gson:$rootProject.ext.dependencies.gsonVersion"
+    // ButterKnife
+    implementation "com.jakewharton:butterknife:$rootProject.ext.dependencies.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.dependencies.butterknifeVersion"
+}

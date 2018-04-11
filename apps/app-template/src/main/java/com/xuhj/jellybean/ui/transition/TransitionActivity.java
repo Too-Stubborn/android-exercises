@@ -3,7 +3,7 @@ package com.xuhj.jellybean.ui.transition;
 import android.os.Bundle;
 
 import com.xuhj.jellybean.R;
-import com.xuhj.library.base.BaseActivity;
+import com.xuhj.android.core.BaseActivity;
 
 public class TransitionActivity extends BaseActivity {
 
