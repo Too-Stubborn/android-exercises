@@ -10,7 +10,7 @@ apply plugin: rootProject.ext.plugin.kotlinEx
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     // gradle3.0以上不需要
-//    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion

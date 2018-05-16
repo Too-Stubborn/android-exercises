@@ -4,18 +4,19 @@
 ext {
     android = [
             compileSdkVersion: 27,  // as 3.0 以后必须大于26
-            buildToolsVersion: '27.0.0',  // as 3.0 以后不需要设置buildTools了
+            buildToolsVersion: '27.0.3',  // as 3.0 以后不需要设置buildTools了
             minSdkVersion    : 15,
             targetSdkVersion : 22
     ]
     plugin = [
             library    : 'com.android.library',
             application: 'com.android.application',
-            butterknife: 'com.jakewharton.butterknife',
+            maven      : 'maven',
             apt        : 'android-apt',
             kapt       : 'kotlin-kapt',
             kotlin     : 'kotlin-android',
             kotlinEx   : 'kotlin-android-extensions',
+            butterknife: 'com.jakewharton.butterknife',
             novoda     : 'com.novoda.bintray-release'
     ]
     from = [
@@ -35,10 +36,12 @@ ext {
             supportLibraryVersion: '27.1.1',
             // Kotlin anko
             ankoVersion          : '0.10.4',
-            // Gson
-            gsonVersion          : '2.8.0',
             // ConstraintLayout
             constraintLayout     : '1.0.2',
+            // Gson
+            gsonVersion          : '2.8.0',
+            // EventBus
+            eventBusVersion      : '3.1.1',
             // Timber
             timberVersoin        : '4.6.1',
             // Retrofit2
@@ -50,9 +53,7 @@ ext {
             // Glide
             glideVersion         : '4.6.1',
             // Dagger2
-            dagger2Version       : '2.11-rc2',
-            // EventBus
-            eventBusVersion      : '3.1.1',
+            dagger2Version       : "2.15",
             // DBFlow
             dbFlowVersion        : '4.0.5',
             // RxJava2

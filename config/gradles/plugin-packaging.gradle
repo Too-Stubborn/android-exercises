@@ -15,7 +15,7 @@ android {
         release {
             keyAlias KEY_ALIAS
             keyPassword KEY_PASSWORD
-            storeFile file(rootProject.getRootDir().getAbsolutePath() + '/config/templateReleaseKey.jks')
+            storeFile file(rootProject.getRootDir().getAbsolutePath() + '/keystores/templateReleaseKey.jks')
             storePassword STORE_PASSWORD
         }
     }
@@ -40,14 +40,12 @@ android {
             flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
         }
     }
-    //打包apk时自定义名字
-    applicationVariants.all {
-        variant ->
-            variant.outputs.each { output ->
-                def oldFile = output.outputFile
-                output.outputFile = new File(oldFile.parent, oldFile.name.replace(".apk", time() + ".apk"))
-            }
+    //打包apk时自定义名字，as3.0需要修改为一下写法
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${variant.name}-v${variant.versionName}-${buildType.name}${time()}.apk"
+        }
     }
     //apk前缀名字，此属性需要具体模块覆写app名称
-    project.archivesBaseName = "AppName" + "-v" + defaultConfig.versionName;
+    project.archivesBaseName = "AppName" + "-v" + defaultConfig.versionName
 }

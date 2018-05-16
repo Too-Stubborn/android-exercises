@@ -1,6 +1,7 @@
 package com.xuhj.android.network;
 
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.xuhj.android.network.subscriber.BaseSubscriber;
@@ -55,8 +56,8 @@ public class HttpFactory {
         return sInstance;
     }
 
-    private Retrofit sRetrofit;
-    private HttpConfiguration sDefaultConfig;
+    private Retrofit mRetrofit;
+    private HttpConfiguration mDefaultConfig;
 
     /**
      * 创建OkHttpClient
@@ -64,7 +65,7 @@ public class HttpFactory {
      * @param config config
      * @return OkHttpClient
      */
-    private OkHttpClient createOkHttpClient(HttpConfiguration config) {
+    private static OkHttpClient createOkHttpClient(HttpConfiguration config) {
         // okhttp log output
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY
@@ -88,7 +89,6 @@ public class HttpFactory {
                 .cache(cache) //网络缓存，目前只支持GET方式
                 .readTimeout(config.timeout, TimeUnit.SECONDS)
                 .connectTimeout(config.timeout, TimeUnit.SECONDS);
-
         return builder.build();
     }
 
@@ -97,7 +97,7 @@ public class HttpFactory {
      *
      * @return Retrofit.Builder
      */
-    private Retrofit.Builder createRetrofitBuilder(HttpConfiguration config) {
+    private static Retrofit.Builder createRetrofitBuilder(HttpConfiguration config) {
         // 生成Builder对象
         Retrofit.Builder builder = new Retrofit.Builder();
         /*
@@ -109,37 +109,36 @@ public class HttpFactory {
         }
         // 配置默认参数
         builder.client(createOkHttpClient(config))
+                .baseUrl(config.baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())  // Gson解析器
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create());  // 支持RxJava模式
         return builder;
     }
 
     /**
-     * 获取Retrofit实例
+     * 获取Retrofit单例实例
      *
      * @return Retrofit
      */
     private Retrofit getRetrofit() {
-        if (sRetrofit == null) {
+        if (mRetrofit == null) {
             synchronized (HttpFactory.class) {
-                if (sRetrofit == null) {
+                if (mRetrofit == null) {
                     if (!isInited()) {
                         throw new UnsupportedOperationException("Please initialize HttpFactory");
                     }
-                    sRetrofit = createRetrofitBuilder(sDefaultConfig)
-                            .baseUrl(sDefaultConfig.baseUrl)
-                            .build();
+                    mRetrofit = createRetrofitBuilder(mDefaultConfig).build();
                 }
             }
         }
-        return sRetrofit;
+        return mRetrofit;
     }
 
     /**
      * 是否已初始化
      */
     private boolean isInited() {
-        return sDefaultConfig != null;
+        return mDefaultConfig != null;
     }
 
     // --------------------------------------------------------------------------------------------
@@ -152,7 +151,7 @@ public class HttpFactory {
      * @param config 配置信息
      */
     public void init(HttpConfiguration config) {
-        sDefaultConfig = config;
+        mDefaultConfig = config;
     }
 
     /**
@@ -160,10 +159,20 @@ public class HttpFactory {
      *
      * @return Retrofit
      */
-    public static Retrofit getClient() {
-        return getInstance().getRetrofit();
+    public Retrofit getClient() {
+        return getRetrofit();
     }
 
+    /**
+     * 创建新的Retrofit实例
+     *
+     * @param context context
+     * @param baseUrl baseUrl
+     * @return Retrofit
+     */
+    public static Retrofit newClient(Context context, String baseUrl) {
+        return createRetrofitBuilder(HttpConfiguration.createDefault(context, baseUrl)).build();
+    }
     // ------ 接口请求与返回封装方法 --------------------------------------------------------------
 
     /**

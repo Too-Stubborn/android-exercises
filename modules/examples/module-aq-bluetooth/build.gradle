@@ -1,0 +1,54 @@
+if (IS_MODULE.toBoolean()) {
+    apply from: rootProject.ext.from.library
+} else {
+    apply from: rootProject.ext.from.application
+}
+//apply from: rootProject.ext.from.maven
+apply plugin: rootProject.ext.plugin.butterknife
+//apply plugin: 'kotlin-kapt'
+
+android {
+    defaultConfig {
+        if (!IS_MODULE.toBoolean()) {
+            applicationId "com.xuhj.android.aq.bluetooth"
+            minSdkVersion 21
+            targetSdkVersion 22
+            versionCode 1
+            versionName "1.0.0"
+        }
+    }
+
+    sourceSets {
+        def sampleDir = 'sample'
+        main {
+            if (IS_MODULE.toBoolean()) {
+                //集成开发模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude "${sampleDir}/**"
+                }
+            } else {
+                manifest.srcFile "src/${sampleDir}/AndroidManifest.xml"
+                java.srcDir("src/${sampleDir}/java")
+                res.srcDir("src/${sampleDir}/res")
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation project(":modules:base:module-base-eventbus")
+    // ButterKnife
+    implementation "com.jakewharton:butterknife:$rootProject.ext.dependencies.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.dependencies.butterknifeVersion"
+
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.dependencies.rxjava2Version.rxjava"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.dependencies.rxjava2Version.rxandroid"
+    implementation "com.trello.rxlifecycle2:rxlifecycle:$rootProject.ext.dependencies.rxjava2Version.rxlifecycle"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-android:$rootProject.ext.dependencies.rxjava2Version.rxlifecycleAndroid"
+    implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.ext.dependencies.rxjava2Version.rxbinding"
+    implementation "com.jakewharton.rxrelay2:rxrelay:$rootProject.ext.dependencies.rxjava2Version.rxrelay"
+
+    implementation 'com.google.android:flexbox:0.3.2'
+
+}

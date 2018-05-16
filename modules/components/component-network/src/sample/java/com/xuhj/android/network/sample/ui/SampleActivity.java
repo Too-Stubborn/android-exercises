@@ -9,6 +9,8 @@ import com.xuhj.android.network.R;
 import com.xuhj.android.network.sample.api.TestService;
 import com.xuhj.android.network.subscriber.BaseSubscriber;
 
+import java.io.IOException;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -28,18 +30,28 @@ public class SampleActivity extends AppCompatActivity {
     }
 
     private void fetch() {
-        TestService service = HttpFactory.getClient().create(TestService.class);
+        TestService service = HttpFactory.newClient(this, "http://ip.taobao.com")
+                .create(TestService.class);
 
         HttpFactory.enqueue(service.queryIP("115.200.238.40"), new BaseSubscriber<ResponseBody>(this) {
             @Override
             public void onNext(ResponseBody responseBody) {
-                tvMsg.setText(responseBody.toString());
+                try {
+                    tvMsg.setText(responseBody.string());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
             public void onError(Throwable e) {
                 super.onError(e);
                 tvMsg.setText(e.getMessage());
+            }
+
+            @Override
+            protected boolean isShowProgressDialog() {
+                return true;
             }
         });
     }

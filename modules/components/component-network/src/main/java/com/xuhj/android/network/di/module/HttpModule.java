@@ -1,7 +1,6 @@
 package com.xuhj.android.network.di.module;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import com.xuhj.android.network.BuildConfig;
 
@@ -50,31 +49,6 @@ public class HttpModule {
 
     @Singleton
     @Provides
-    public Retrofit provideRetrofit(Retrofit.Builder builder) {
-        return builder.baseUrl(mBaseUrl).build();
-    }
-
-    @Singleton
-    @Provides
-    public Retrofit.Builder provideRetrofitBuilder(OkHttpClient client) {
-        // 生成Builder对象
-        Retrofit.Builder builder = new Retrofit.Builder();
-        /*
-            基本参数配置
-         */
-        // 优先添加自定义解析器
-        for (Converter.Factory c : mConverters) {
-            builder.addConverterFactory(c);
-        }
-        // 配置默认参数
-        builder.client(client)
-                .addConverterFactory(GsonConverterFactory.create())  // Gson解析器
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create());  // 支持RxJava模式
-        return builder;
-    }
-
-    @Singleton
-    @Provides
     public OkHttpClient provideOkHttpClient() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
@@ -102,6 +76,31 @@ public class HttpModule {
         return builder.build();
     }
 
+    @Singleton
+    @Provides
+    public Retrofit.Builder provideRetrofitBuilder(OkHttpClient client) {
+        // 生成Builder对象
+        Retrofit.Builder builder = new Retrofit.Builder();
+        /*
+            基本参数配置
+         */
+        // 优先添加自定义解析器
+        for (Converter.Factory c : mConverters) {
+            builder.addConverterFactory(c);
+        }
+        // 配置默认参数
+        builder.client(client)
+                .addConverterFactory(GsonConverterFactory.create())  // Gson解析器
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create());  // 支持RxJava模式
+        return builder;
+    }
+
+    @Singleton
+    @Provides
+    public Retrofit provideRetrofit(Retrofit.Builder builder) {
+        return builder.baseUrl(mBaseUrl).build();
+    }
+    
     // ------ 建造者模式 --------------------------------------------------------------------------
 
     /**
@@ -132,10 +131,7 @@ public class HttpModule {
          *
          * @param baseUrl baseUrl
          */
-        public Builder setBaseUrl(String baseUrl) {
-            if (TextUtils.isEmpty(baseUrl)) {
-                throw new IllegalArgumentException("baseurl can not be empty");
-            }
+        public Builder baseUrl(String baseUrl) {
             this.baseUrl = baseUrl;
             return this;
         }
@@ -145,7 +141,7 @@ public class HttpModule {
          *
          * @param timeout timeout
          */
-        public void setTimeout(long timeout) {
+        public void timeout(long timeout) {
             this.timeout = timeout;
         }
 

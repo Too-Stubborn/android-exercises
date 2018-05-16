@@ -21,7 +21,7 @@ public class HttpConfiguration {
 
     Context context;
     String baseUrl;
-    long timeout = 30;
+    long timeout = 10;
     List<Interceptor> interceptors = new ArrayList<>();
     List<Converter.Factory> converters = new ArrayList<>();
 
@@ -38,8 +38,8 @@ public class HttpConfiguration {
      *
      * @param context context
      */
-    public static HttpConfiguration createDefault(Context context) {
-        return new Builder(context).build();
+    public static HttpConfiguration createDefault(Context context, String baseUrl) {
+        return new Builder(context).baseUrl(baseUrl).build();
     }
 
     // ------ 建造者模式 --------------------------------------------------------------------------
@@ -65,7 +65,7 @@ public class HttpConfiguration {
 
         public HttpConfiguration build() {
             if (baseUrl == null || baseUrl.length() == 0) {
-                throw new IllegalArgumentException("baseurl can not be empty");
+                throw new IllegalArgumentException("baseUrl can not be empty");
             }
             return new HttpConfiguration(this);
         }
@@ -75,7 +75,7 @@ public class HttpConfiguration {
          *
          * @param baseUrl baseUrl
          */
-        public Builder setBaseUrl(String baseUrl) {
+        public Builder baseUrl(String baseUrl) {
             this.baseUrl = baseUrl;
             return this;
         }
@@ -85,7 +85,7 @@ public class HttpConfiguration {
          *
          * @param timeout timeout
          */
-        public void setTimeout(long timeout) {
+        public void timeout(long timeout) {
             this.timeout = timeout;
         }
 

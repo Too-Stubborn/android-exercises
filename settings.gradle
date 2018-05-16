@@ -13,9 +13,24 @@ include ':modules:base:module-base-router'
 /*
     modules-components
  */
-include ':modules:components:component-network'
-include ':modules:components:component-imageloader'
+//include ':modules:components:component-network'
+//include ':modules:components:component-imageloader'
+
+/*
+    modules-examples
+ */
+include ':modules:examples:module-aq-bluetooth'
+
+/*
+    modules-processors
+ */
+//include ':modules:processors:processor-template-compiler'
 
 /*
     modules-ext
  */
+
+/*
+    modules-thirdparty
+ */
+include ':modules:thirdparty:module-map'

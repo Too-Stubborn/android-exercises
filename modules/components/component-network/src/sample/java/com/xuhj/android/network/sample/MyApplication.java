@@ -2,9 +2,6 @@ package com.xuhj.android.network.sample;
 
 import android.app.Application;
 
-import com.xuhj.android.network.HttpConfiguration;
-import com.xuhj.android.network.HttpFactory;
-
 /**
  * 描述
  *
@@ -16,11 +13,6 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        HttpConfiguration configuration = new HttpConfiguration.Builder(this)
-                .setBaseUrl("http://ip.taobao.com")
-                .build();
-        HttpFactory.getInstance().init(configuration);
 
     }
 }

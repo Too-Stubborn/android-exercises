@@ -1,0 +1,45 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="ThemeOverlay.AppCompat.ActionBar">
+        <!-- toolbar中显示的更多选项内容文字颜色 -->
+        <item name="actionMenuTextColor">@android:color/white</item>
+        <!-- 三个小白点颜色 -->
+        <item name="colorControlNormal">@android:color/white</item>
+        <!-- 用于替换菜单的三个小白点，换成自已的图片-->
+        <!--<item name="actionOverflowButtonStyle">@style/ToolbarMenuButton</item>-->
+        <!--用于控制menu弹出的位置，位于toolbar的下面，而不是上面-->
+        <item name="actionOverflowMenuStyle">@style/ToolbarPopupMenuStyle</item>
+    </style>
+
+    <style name="ToolbarMenuButton" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_menu_24dp</item>
+    </style>
+
+    <style name="ToolbarPopupMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <!-- 是否覆盖锚点，默认为true，即盖住Toolbar -->
+        <item name="overlapAnchor">false</item>
+        <!-- 弹出层垂直方向上的偏移，负值会覆盖toolbar -->
+        <item name="android:dropDownVerticalOffset">0dp</item>
+        <!-- 弹出层水平方向上的偏移，即距离屏幕左边的距离，负值会导致右边出现空隙 -->
+        <item name="android:dropDownHorizontalOffset">0dp</item>
+        <!-- 设置Menu的背景颜色-->
+        <item name="android:colorBackground">@android:color/white</item>
+        <!-- 设置Menu子菜单的背景色 -->
+        <item name="android:itemBackground">?attr/itemBackground</item>
+        <!-- 设置Menu子菜单的字体颜色 -->
+        <item name="android:textColor">@android:color/black</item>
+        <!-- 设置分割线 -->
+        <item name="android:listSelector">@null</item>
+        <item name="android:divider">@android:color/transparent</item>
+        <item name="android:dividerHeight">0.6dp</item>
+    </style>
+
+</resources>

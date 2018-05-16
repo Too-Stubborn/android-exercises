@@ -1,5 +1,4 @@
 
-
 # Android架构搭建与练习
 
  [![逼格小图标](https://img.shields.io/badge/release-v1.0.0-brightgreen.svg)](https://github.com/xhjnono/vue-exercises)

@@ -13,6 +13,11 @@ android {
             versionCode 1
             versionName "1.0.0"
         }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
     }
 
     sourceSets {
@@ -43,7 +48,10 @@ dependencies {
  */
 dependencies {
     // Glide图片加载
-    compile "com.github.bumptech.glide:glide:$rootProject.ext.dependencies.glideVersion"
+    implementation "com.github.bumptech.glide:glide:$rootProject.ext.dependencies.glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.dependencies.glideVersion"
     // Glide图片加载处理
-    compile 'jp.wasabeef:glide-transformations:1.0.6'
+    implementation 'jp.wasabeef:glide-transformations:1.0.6'
+
+//    implementation project(':modules:processors:processor-template-compiler')
 }
