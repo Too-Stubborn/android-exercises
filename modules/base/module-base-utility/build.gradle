@@ -3,14 +3,13 @@ if (IS_MODULE.toBoolean()) {
 } else {
     apply from: rootProject.ext.from.application
 }
-//apply from: rootProject.ext.from.maven
-apply plugin: rootProject.ext.plugin.butterknife
+apply from: rootProject.ext.from.maven
 //apply plugin: 'kotlin-kapt'
 
 android {
     defaultConfig {
         if (!IS_MODULE.toBoolean()) {
-            applicationId "com.xuhj.base.utility"
+            applicationId "com.company.base.utility"
             versionCode 1
             versionName "1.0.0"
         }
@@ -34,9 +33,4 @@ android {
 }
 
 dependencies {
-    // Gson
-    implementation "com.google.code.gson:gson:$rootProject.ext.dependencies.gsonVersion"
-    // ButterKnife
-    implementation "com.jakewharton:butterknife:$rootProject.ext.dependencies.butterknifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.dependencies.butterknifeVersion"
 }

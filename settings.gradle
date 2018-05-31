@@ -9,6 +9,7 @@
 include ':modules:base:module-base-core'
 include ':modules:base:module-base-eventbus'
 include ':modules:base:module-base-router'
+include ':modules:base:module-base-utility'
 
 /*
     modules-components
@@ -33,4 +34,4 @@ include ':modules:examples:module-aq-bluetooth'
 /*
     modules-thirdparty
  */
-include ':modules:thirdparty:module-map'
+//include ':modules:thirdparty:module-map'

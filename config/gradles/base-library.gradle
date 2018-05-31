@@ -35,6 +35,7 @@ dependencies {
 //    api "com.android.support:support-v4:$rootProject.ext.dependencies.supportLibraryVersion"
     api "com.android.support:support-annotations:$rootProject.ext.dependencies.supportLibraryVersion"
     api "com.android.support:appcompat-v7:$rootProject.ext.dependencies.supportLibraryVersion"
+    api 'com.android.support.constraint:constraint-layout:1.0.2'
     api "com.android.support:design:$rootProject.ext.dependencies.supportLibraryVersion"
     api "com.android.support.constraint:constraint-layout:$rootProject.ext.dependencies.constraintLayout"
     api "com.android.support:recyclerview-v7:$rootProject.ext.dependencies.supportLibraryVersion"

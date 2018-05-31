@@ -9,7 +9,7 @@ apply plugin: rootProject.ext.plugin.kotlinEx
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    // gradle3.0以上不需要
+    // gradle3.0以上不需要，但是如果去掉后，有些地方可能会有问题
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
@@ -31,7 +31,7 @@ android {
 //            // 关键代码，release， debug为library中已有buildType
 //            matchingFallbacks = ['release', 'debug']
             buildConfigField "String", "ENV", "\"${ENV}\""
-            buildConfigField "boolean", "IS_TEST", IS_TEST
+            buildConfigField "boolean", "MOCK_SERVER", MOCK_SERVER
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
@@ -39,8 +39,8 @@ android {
 //            matchingFallbacks = ['release', 'debug']
             // 打包环境配置{ "dev":"开发", "beta":"测试", "stable":"发布"}
             buildConfigField "String", "ENV", "\"stable\""
-            // 环境配置{"true":"测试服务器", "false":"正式服务器"}
-            buildConfigField "boolean", "IS_TEST", "false"
+            // 模拟服务器{"true":"模拟数据", "false":"真实数据"}
+            buildConfigField "boolean", "MOCK_SERVER", "false"
             //代码混淆
             minifyEnabled true
             //zipalign优化
@@ -92,6 +92,7 @@ dependencies {
 //    api "com.android.support:support-v4:$rootProject.ext.dependencies.supportLibraryVersion"
     api "com.android.support:support-annotations:$rootProject.ext.dependencies.supportLibraryVersion"
     api "com.android.support:appcompat-v7:$rootProject.ext.dependencies.supportLibraryVersion"
+    api 'com.android.support.constraint:constraint-layout:1.0.2'
     api "com.android.support:design:$rootProject.ext.dependencies.supportLibraryVersion"
     api "com.android.support.constraint:constraint-layout:$rootProject.ext.dependencies.constraintLayout"
     api "com.android.support:recyclerview-v7:$rootProject.ext.dependencies.supportLibraryVersion"
